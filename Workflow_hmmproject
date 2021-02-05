@@ -1,0 +1,96 @@
+<mxfile host="app.diagrams.net" modified="2021-01-22T09:09:28.355Z" agent="5.0 (X11)" etag="H2hGdgs3VcP78g24x9ti" version="14.2.6" type="github">
+  <diagram id="YrQtCIB9WY0VPeefakp5" name="Page-1">
+    <mxGraphModel dx="915" dy="633" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qog2KytuiRXc1zQqH7vf-1" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="150" y="200" width="550" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="qog2KytuiRXc1zQqH7vf-12" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry x="0.5" y="510" width="550" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-6" value="" style="group;fillColor=#d5e8d4;strokeColor=#82b366;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1" connectable="0">
+          <mxGeometry width="550" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-4" value="&lt;div&gt;Creation of HMM database &lt;br&gt;&lt;/div&gt;&lt;div&gt;based on 16s metagenomics &lt;br&gt;&lt;/div&gt;&lt;div&gt;dataset depending on &lt;br&gt;&lt;/div&gt;&lt;div&gt;taxonomy&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry y="5.09090909090909" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-14" value="Categorize sequences in FASTA files plus creation of different folders for each taxonomy " style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry x="213" y="90" width="124" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-17" value="Creation of MSA with MAFFT for each taxonomy" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry x="213" y="215" width="124" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="qog2KytuiRXc1zQqH7vf-1" source="odqDiH8ID8U5DAO7GO7i-14" target="odqDiH8ID8U5DAO7GO7i-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-19" value="Creation of HMM for each taxonomy based on MSA with hmmer" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry x="213" y="310" width="124" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="qog2KytuiRXc1zQqH7vf-1" source="odqDiH8ID8U5DAO7GO7i-17" target="odqDiH8ID8U5DAO7GO7i-19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qog2KytuiRXc1zQqH7vf-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="qog2KytuiRXc1zQqH7vf-1" source="odqDiH8ID8U5DAO7GO7i-21" target="qog2KytuiRXc1zQqH7vf-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-21" value="Join all HMMs in one database" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry x="213" y="410" width="124" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="qog2KytuiRXc1zQqH7vf-1" source="odqDiH8ID8U5DAO7GO7i-19" target="odqDiH8ID8U5DAO7GO7i-21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qog2KytuiRXc1zQqH7vf-13" value="Search HMM database with input sequences" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry x="213" y="530" width="124" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qog2KytuiRXc1zQqH7vf-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="qog2KytuiRXc1zQqH7vf-1" source="qog2KytuiRXc1zQqH7vf-15" target="qog2KytuiRXc1zQqH7vf-13" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="qog2KytuiRXc1zQqH7vf-15" value="FASTA seq" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry x="390" y="520" width="115" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qog2KytuiRXc1zQqH7vf-19" value="&lt;div&gt;Search HMM database &lt;br&gt;&lt;/div&gt;&lt;div&gt;with input FASTA sequence(s)&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry y="510" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qog2KytuiRXc1zQqH7vf-17" value="&lt;div&gt;Output: HMM &lt;br&gt;&lt;/div&gt;&lt;div&gt;scan scoring file&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" parent="qog2KytuiRXc1zQqH7vf-1" vertex="1">
+          <mxGeometry x="199" y="630" width="153" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="qog2KytuiRXc1zQqH7vf-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="qog2KytuiRXc1zQqH7vf-1" source="qog2KytuiRXc1zQqH7vf-13" target="qog2KytuiRXc1zQqH7vf-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="odqDiH8ID8U5DAO7GO7i-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="425" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-1" value="HMM classification project" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="365" y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="odqDiH8ID8U5DAO7GO7i-10" target="odqDiH8ID8U5DAO7GO7i-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-10" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;16S metagenomics &lt;br&gt;&lt;/div&gt;&lt;div&gt;data&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="368" y="110" width="115" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="odqDiH8ID8U5DAO7GO7i-11" target="odqDiH8ID8U5DAO7GO7i-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="odqDiH8ID8U5DAO7GO7i-11" value="&lt;div&gt;Input: which type &lt;br&gt;&lt;/div&gt;&lt;div&gt;of taxonomy?&lt;/div&gt;" style="shape=parallelogram;html=1;strokeWidth=2;perimeter=parallelogramPerimeter;whiteSpace=wrap;rounded=1;arcSize=12;size=0.23;" parent="1" vertex="1">
+          <mxGeometry x="349" y="220" width="153" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UD9FaQS2xAqwAibE3QUJ-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+          <mxGeometry x="150" y="920" width="550" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="UD9FaQS2xAqwAibE3QUJ-2" value="Conversion to csv" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" parent="1" vertex="1">
+          <mxGeometry x="160" y="920" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="UD9FaQS2xAqwAibE3QUJ-3" value="&lt;div&gt;Convert HMM scoring file to csv based on:&lt;/div&gt;&lt;div&gt;score, evalue en bias&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="363.5" y="930" width="124" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UD9FaQS2xAqwAibE3QUJ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="qog2KytuiRXc1zQqH7vf-17" target="UD9FaQS2xAqwAibE3QUJ-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
