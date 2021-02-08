@@ -21,7 +21,7 @@ def get_index_taxonomy(file, taxonomy_type):
     i = 0
     counter = 0
     # Lees alleen de eerste regel van het bestand
-    with open(file) as inFile:
+    with open(file, encoding="utf-8") as inFile:
         while i < 1:
             line = inFile.readline().split("\t")
             # Voor iedere kolom checken of de taxonomy voorkomt
@@ -88,13 +88,13 @@ def fasta_writer(csv_dict, taxo_types, taxonomy_type):
     print("Start met het schrijven van alle fasta files")
     # Maak folders aan per taxonomy in het bestand
     if not os.path.isdir(taxonomy_type):
-        cmd = "mkdir {}".format(taxonomy_type)
+        cmd = "mkdir -p {}".format(taxonomy_type)
         e = subprocess.check_call(cmd, shell=True)
 
     for taxonomy in taxo_types:
         taxonomy_folder = "{}/{}".format(taxonomy_type, taxonomy)
         if not os.path.isdir(taxonomy_folder):
-            cmd = "mkdir {}/{}".format(taxonomy_type, taxonomy)
+            cmd = "mkdir -p {}/{}".format(taxonomy_type, taxonomy)
             e = subprocess.check_call(cmd, shell=True)
 
         # Als het fasta bestand nog niet bestaat maak je deze aan en
@@ -123,7 +123,7 @@ def msa(taxo_types, taxonomy_type):
         # leeg is wordt MAFFT aangeroepen om hier een msa van te maken
         if not os.path.isfile("{}/{}.msa".format(taxonomy_folder, taxonomy)):
             if not os.stat(fasta).st_size == 0:
-                cmd = "mafft.bat {} > {}/{}.msa".format(fasta,
+                cmd = "mafft {} > {}/{}.msa".format(fasta,
                                                             taxonomy_folder,
                                                             taxonomy)
                 e = subprocess.check_call(cmd, shell=True)
@@ -162,7 +162,7 @@ def hmm_db(taxo_types, taxonomy_type):
     # Maak de map met de hmm database aan
     hmm_locations = []
     if not os.path.isdir("hmm_db/{}".format(taxonomy_type)):
-        cmd = "mkdir hmm_db/{}".format(taxonomy_type)
+        cmd = "mkdir -p hmm_db/{}".format(taxonomy_type)
         e = subprocess.check_call(cmd, shell=True)
     print("done")
 
@@ -198,7 +198,7 @@ def hmm_db(taxo_types, taxonomy_type):
 
 if __name__ == '__main__':
     # Geef de input file
-    file = "../janne.csv"
+    file = "janne.csv"
 
     # Met welk taxonomy_type werken we op het moment?
     taxonomy_type = "class"

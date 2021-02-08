@@ -1,5 +1,8 @@
 #!/bin/bash
 
-python pipe_to_hmm_database.py
-python hmm_scan.py
-python hmmoutput_to_csv.py
+python3.8 "pipe_to_hmm_database.py"
+echo piped
+python3.8 "hmm_scan.py"
+echo scanned
+python3.8 "hmmoutput_to_csv.py"
+echo dun
