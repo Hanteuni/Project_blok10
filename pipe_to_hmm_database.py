@@ -198,7 +198,7 @@ def hmm_db(taxo_types, taxonomy_type):
 
 if __name__ == '__main__':
     # Geef de input file
-    file = "janne.csv"
+    file = "data/janne.csv"
 
     # Met welk taxonomy_type werken we op het moment?
     taxonomy_type = "class"

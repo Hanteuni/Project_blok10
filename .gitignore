@@ -1,3 +1,6 @@
 class
 janne.csv
 janne.fasta
+data/*
+figs
+!.gitkeep
