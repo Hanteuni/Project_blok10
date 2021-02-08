@@ -21,7 +21,7 @@ def get_index_taxonomy(file, taxonomy_type):
     i = 0
     counter = 0
     # Lees alleen de eerste regel van het bestand
-    with open(file) as inFile:
+    with open(file, encoding="utf-8") as inFile:
         while i < 1:
             line = inFile.readline().split("\t")
             # Voor iedere kolom checken of de taxonomy voorkomt
