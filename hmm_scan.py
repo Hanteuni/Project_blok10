@@ -50,7 +50,7 @@ def search_hmm_database(inputf, outputf, taxonomy_type):
 
 if __name__ == '__main__':
     # Geef hier de fasta file om mee te gaan zoeken in de hmm database
-    fasta_to_search_with = "janne.fasta"
+    fasta_to_search_with = "data/janne.fasta"
 
     # Hier zorgen we ervoor dat de taxonomy type hetzelfde is als de aan-
     # van de database: LET OP, als je dus een andere wilt gebruiken zul
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     # De file waar de gevonden matches in opgeslagen gaan worden, dus
     # pas deze aan als onderstaande string niet meer overeen komt met
     # jouw data
-    gevonden_matches = "janne.csv"
+    gevonden_matches = "data/janne.csv"
 
     # Ga daadwerkelijk zoeken in de database
     search_hmm_database(fasta_to_search_with,
