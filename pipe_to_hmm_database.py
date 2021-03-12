@@ -92,6 +92,7 @@ def fasta_writer(csv_dict, taxo_types, taxonomy_type):
         e = subprocess.check_call(cmd, shell=True)
 
     for taxonomy in taxo_types:
+        taxonomy = taxonomy.strip("\n")
         taxonomy_folder = "{}/{}".format(taxonomy_type, taxonomy)
         if not os.path.isdir(taxonomy_folder):
             cmd = "mkdir -p {}/{}".format(taxonomy_type, taxonomy)
@@ -115,10 +116,13 @@ def msa(taxo_types, taxonomy_type):
     :return:
     """
     print("Start met het maken van MSA")
+    csv_statistieken = open("{}/statistieken.csv".format(taxonomy_type), "w", encoding="utf-8")
+    csv_statistieken.write(taxonomy_type + "," + "aantal" + "\n")
     # Ga over iedere taxonomy heen
     for taxonomy in taxo_types:
         taxonomy_folder = "{}/{}".format(taxonomy_type, taxonomy)
         fasta = "{}/{}.fasta".format(taxonomy_folder, taxonomy)
+        csv_statistieken.write(str(taxonomy) + "," + str(len(open(fasta, "r").readlines())/2) +"\n")
         # Als het MSA bestand nog niet bestaat en het fasta bestand niet
         # leeg is wordt MAFFT aangeroepen om hier een msa van te maken
         if not os.path.isfile("{}/{}.msa".format(taxonomy_folder, taxonomy)):
@@ -127,7 +131,7 @@ def msa(taxo_types, taxonomy_type):
                                                             taxonomy_folder,
                                                             taxonomy)
                 e = subprocess.check_call(cmd, shell=True)
-
+    csv_statistieken.close()
 
 def build_hmms(taxo_types, taxonomy_type):
     """Bouw van iedere msa een hmm
@@ -201,7 +205,7 @@ if __name__ == '__main__':
     file = "data/janne.csv"
 
     # Met welk taxonomy_type werken we op het moment?
-    taxonomy_type = "class"
+    taxonomy_type = "genus"
 
     taxonomy_type_idx = get_index_taxonomy(file, taxonomy_type)
     # parse de csv en sla deze op in een dictionary, verkrijg de
