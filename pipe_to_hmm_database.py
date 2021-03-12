@@ -123,7 +123,7 @@ def msa(taxo_types, taxonomy_type):
         taxonomy = taxonomy.strip("\n")
         taxonomy_folder = "{}/{}".format(taxonomy_type, taxonomy)
         fasta = "{}/{}.fasta".format(taxonomy_folder, taxonomy)
-        csv_statistieken.write(str(taxonomy) + "," + str(len(open(fasta, "r").readlines())/2) +"\n")
+        csv_statistieken.write(str(taxonomy) + "," + str(round(len(open(fasta, "r").readlines())/2)) +"\n")
         # Als het MSA bestand nog niet bestaat en het fasta bestand niet
         # leeg is wordt MAFFT aangeroepen om hier een msa van te maken
         if not os.path.isfile("{}/{}.msa".format(taxonomy_folder, taxonomy)):
