@@ -120,6 +120,7 @@ def msa(taxo_types, taxonomy_type):
     csv_statistieken.write(taxonomy_type + "," + "aantal" + "\n")
     # Ga over iedere taxonomy heen
     for taxonomy in taxo_types:
+        taxonomy = taxonomy.strip("\n")
         taxonomy_folder = "{}/{}".format(taxonomy_type, taxonomy)
         fasta = "{}/{}.fasta".format(taxonomy_folder, taxonomy)
         csv_statistieken.write(str(taxonomy) + "," + str(len(open(fasta, "r").readlines())/2) +"\n")
