@@ -19,7 +19,6 @@
                 }
             },
             "taxonomie_hmms": {
-                "aantal_in_hmm":0,
                 "tax1": {
                     "annotatie": [
                         "vul_met_taxonomie_niveaus"
@@ -53,7 +52,6 @@
                 }
             },
             "taxonomie_hmms": {
-                "aantal_in_hmm":0,
                 "tax1": {
                     "annotatie": [
                         "vul_met_taxonomie_niveaus"
