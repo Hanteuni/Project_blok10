@@ -59,7 +59,7 @@ def parse_csv(file, idx):
         # dictionary maken met een unieke key en organisme met als value
         # de sequentie
         for line in inFile:
-            line = line.split("\t")
+            line = line.strip().split("\t")
             if line[idx] == "":
                 tt = "unknown"
             else:
