@@ -29,7 +29,7 @@ def json_to_fasta(file_json, forward):     #rename
                     for info in data:
                         print(">" + info + "|{}".format(strand) + "\n"
                               + data[info]["reverse_sequentie"]["sequentie"])
-                        sequentie = Seq(data[info]["reverse_sequentie"]["sequentie"]).complement()
+                        sequentie = Seq(data[info]["reverse_sequentie"]["sequentie"]).reverse_complement()
                         f.write(">" + info + "|{}".format(strand) + "\n"
                                 + str(sequentie) + "\n")
                     f.close()
