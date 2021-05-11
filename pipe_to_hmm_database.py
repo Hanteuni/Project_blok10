@@ -128,7 +128,7 @@ def msa(taxo_types, taxonomy_type):
         # leeg is wordt MAFFT aangeroepen om hier een msa van te maken
         if not os.path.isfile("{}/{}.msa".format(taxonomy_folder, taxonomy)):
             if not os.stat(fasta).st_size == 0:
-                cmd = "mafft {} > {}/{}.msa".format(fasta,
+                cmd = "mafft.bat {} > {}/{}.msa".format(fasta,
                                                             taxonomy_folder,
                                                             taxonomy)
                 e = subprocess.check_call(cmd, shell=True)

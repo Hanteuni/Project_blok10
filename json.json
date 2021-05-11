@@ -1,72 +1,412 @@
 {
-    "header": { 
-        "forward_sequentie": {
-            "sequentie":"ATGATG",
-            "taxonomie_blast": {
-                "tax1": {
-                    "annotatie": [
-                        "vul_met_taxonomie_niveaus"
-                    ],
-                    "e-value": 0,
-                    "scoring": 0
-                },
-                "tax2": {
-                    "annotatie": [
-                        "vul_met_taxonomie_niveaus"
-                    ],
-                    "e-value": 0,
-                    "scoring": 0
-                }
-            },
-            "taxonomie_hmms": {
-                "tax1": {
-                    "annotatie": [
-                        "vul_met_taxonomie_niveaus"
-                    ],
-                    "scoring": 0
-                },
-                "tax2": {
-                    "annotatie": [
-                        "vul_met_taxonomie_niveaus"
-                    ],
-                    "scoring": 0
-                }
-            }
+  "header": {
+    "forward_sequentie": {
+      "sequentie": "",
+      "taxonomie_blast": {
+        "tax1": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "e-value": 0,
+          "scoring": 0
         },
-        "reverse_sequentie":{
-            "sequentie":"GTAGTAGTA",
-            "taxonomie_blast": {
-                "tax1": {
-                    "annotatie": [
-                        "vul_met_taxonomie_niveaus"
-                    ],
-                    "e-value": 0,
-                    "scoring": 0
-                },
-                "tax2": {
-                    "annotatie": [
-                        "vul_met_taxonomie_niveaus"
-                    ],
-                    "e-value": 0,
-                    "scoring": 0
-                }
-            },
-            "taxonomie_hmms": {
-                "tax1": {
-                    "annotatie": [
-                        "vul_met_taxonomie_niveaus"
-                    ],
-                    "scoring": 0
-                },
-                "tax2": {
-                    "annotatie": [
-                        "vul_met_taxonomie_niveaus"
-                    ],
-                    "scoring": 0
-                }
-            }
+        "tax2": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "e-value": 0,
+          "scoring": 0
+        }
+      },
+      "taxonomie_hmms_domain": {
+        "tax1_domain": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
         },
-        "blast_gelijk":"type_discrepantie",
-        "hmm_gelijk":"type_discrepantie"
+        "tax2_domain": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_domain": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_kingdom": {
+        "tax1_kingdom": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_kingdom": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_domain": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_phylum": {
+        "tax1_phylum": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_phylum": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_phylum": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_class": {
+        "tax1_phylum": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_class": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_class": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_order": {
+        "tax1_order": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_order": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_order": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_family": {
+        "tax1_family": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_family": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_family": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_genus": {
+        "tax1_genus": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_genus": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_genus": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_species": {
+        "tax1_species": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_species": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_species": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      }
     }
+  },
+  "reverse_sequentie": {
+    "sequentie": "",
+    "taxonomie_blast": {
+      "tax1": {
+        "annotatie": [
+          "vul_met_taxonomie_niveaus"
+        ],
+        "e-value": 0,
+        "scoring": 0
+      },
+      "tax2": {
+        "annotatie": [
+          "vul_met_taxonomie_niveaus"
+        ],
+        "e-value": 0,
+        "scoring": 0
+      }
+    },
+    "taxonomie_hmms_domain": {
+        "tax1_domain": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_domain": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_domain": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_kingdom": {
+        "tax1_kingdom": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_kingdom": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_domain": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_phylum": {
+        "tax1_phylum": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_phylum": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_phylum": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_class": {
+        "tax1_phylum": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_class": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_class": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_order": {
+        "tax1_order": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_order": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_order": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_family": {
+        "tax1_family": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_family": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_family": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_genus": {
+        "tax1_genus": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_genus": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_genus": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      },
+      "taxonomie_hmms_species": {
+        "tax1_species": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax2_species": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        },
+        "tax3_species": {
+          "annotatie": [
+            "vul_met_taxonomie_niveaus"
+          ],
+          "scoring": 0,
+          "e_val": 0
+        }
+      }
+  },
+  "blast_gelijk": "type_discrepantie",
+  "hmm_gelijk": "type_discrepantie"
 }
