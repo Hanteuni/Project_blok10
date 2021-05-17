@@ -19,7 +19,7 @@ def file_reader(ffname, rfname, ):
             rsplit = rline.split("\t")
             # print(rsplit)
 
-            for i in range(33):
+            for i in range(42):
                 try:
                     fsplit[i]
                 except IndexError:
@@ -53,20 +53,44 @@ def file_reader(ffname, rfname, ):
                                                                                                                   30],
                                                                                                           'scoring':
                                                                                                               fsplit[
-                                                                                                                  31]}}},
-                                    'reverse_sequentie': {'sequentie': rsplit[2], 'taxonomie_blast':
-                                        {'tax1': {'annotatie': rsplit[10], 'e-value': rsplit[19],
-                                                  'scoring': rsplit[20]},
-                                         'tax2': {'annotatie': rsplit[21], 'e-value': rsplit[30],
-                                                  'scoring': rsplit[31]}}},
-                                    'blast_gelijk': disc_type,
-                                    'hmm_gelijk': 'type_discrepantie'}
-        print("preparing transfer to json file")
-        with open("DOOM.json", "w+") as new_json:
-            print("uploading the jason file... ")
-            json.dump(json_file, new_json)
-            print("file is done")
-        return counter
+                                                                                                                  31]},
+                                                                                                      'tax3':
+                                                                                                          {'annotatie':
+                                                                                                               fsplit[
+                                                                                                                   32],
+                                                                                                           'e-value':
+                                                                                                               fsplit[
+                                                                                                                   41],
+                                                                                                           'scoring':
+                                                                                                               fsplit[
+                                                                                                                   41]}},
+
+                                                          'reverse_sequentie': {'sequentie': rsplit[2],
+                                                                                'taxonomie_blast':
+                                                                                    {'tax1': {'annotatie': rsplit[10],
+                                                                                              'e-value': rsplit[19],
+                                                                                              'scoring': rsplit[20]},
+                                                                                     'tax2': {'annotatie': rsplit[21],
+                                                                                              'e-value': rsplit[30],
+                                                                                              'scoring': rsplit[31]}},
+                                                                                'tax3':
+                                                                                    {'annotatie':
+                                                                                         fsplit[
+                                                                                             32],
+                                                                                     'e-value':
+                                                                                         fsplit[
+                                                                                             41],
+                                                                                     'scoring':
+                                                                                         fsplit[
+                                                                                             41]}},
+                                                            'blast_gelijk': disc_type,
+                                                            'hmm_gelijk': 'type_discrepantie'}}
+    print("preparing transfer to json file")
+    with open("DOOM.json", "w+") as new_json:
+        print("uploading the jason file... ")
+        json.dump(json_file, new_json)
+        print("file is done")
+    return counter
 
 
 def discrepantie_search(tax_dict1, tax_dict2):
@@ -133,7 +157,7 @@ def counter_for_analysis(counter):
     total_count = list(counter.values())
     for number in total_count:
         total += number
-    print(f"The percentage discrepancy in class level: ", round(total_class / total * 100,2), "%")
+    print(f"The percentage discrepancy in class level: ", round(total_class / total * 100, 2), "%")
 
 
 if __name__ == '__main__':
@@ -142,4 +166,4 @@ if __name__ == '__main__':
     rfname = "1_R2_outputfile.tsv"
     counter = file_reader(ffname, rfname)
     # discrepancy_plot(counter)
-    counter_for_analysis(counter)
+    # counter_for_analysis(counter)
