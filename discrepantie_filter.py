@@ -1,5 +1,6 @@
 import json, tqdm
 import matplotlib.pyplot as plt
+import math
 
 
 def file_reader(ffname, rfname, ):
@@ -31,18 +32,36 @@ def file_reader(ffname, rfname, ):
             tax_dict1[fsplit[0]] = [fsplit[10], fsplit[21], fsplit[32]]
             tax_dict2[rsplit[0]] = [rsplit[10], rsplit[21], rsplit[32]]
 
-            disc_type = discrepantie_search(tax_dict1,tax_dict2)
+            disc_type = discrepantie_search(tax_dict1, tax_dict2)
             counter[disc_type] += 1
-            json_file[fsplit[0]] = {'forward_sequentie':{'sequentie': fsplit[2], 'taxonomie_blast': {'tax1':
-                                    {'annotatie': fsplit[10],'e-value': fsplit[19],'scoring': fsplit[20]},
-                                      'tax2': {'annotatie': fsplit[21],'e-value': fsplit[30],'scoring': fsplit[31]}}},
+            json_file[fsplit[0]] = {'forward_sequentie': {'sequentie': fsplit[2], 'taxonomie_blast': {'tax1':
+                                                                                                          {'annotatie':
+                                                                                                               fsplit[
+                                                                                                                   10],
+                                                                                                           'e-value':
+                                                                                                               fsplit[
+                                                                                                                   19],
+                                                                                                           'scoring':
+                                                                                                               fsplit[
+                                                                                                                   20]},
+                                                                                                      'tax2': {
+                                                                                                          'annotatie':
+                                                                                                              fsplit[
+                                                                                                                  21],
+                                                                                                          'e-value':
+                                                                                                              fsplit[
+                                                                                                                  30],
+                                                                                                          'scoring':
+                                                                                                              fsplit[
+                                                                                                                  31]}}},
                                     'reverse_sequentie': {'sequentie': rsplit[2], 'taxonomie_blast':
-                                    {'tax1':{'annotatie': rsplit[10],'e-value': rsplit[19],'scoring': rsplit[20]},
-                                    'tax2': {'annotatie': rsplit[21], 'e-value':rsplit[30],'scoring':rsplit[ 31]}}},
+                                        {'tax1': {'annotatie': rsplit[10], 'e-value': rsplit[19],
+                                                  'scoring': rsplit[20]},
+                                         'tax2': {'annotatie': rsplit[21], 'e-value': rsplit[30],
+                                                  'scoring': rsplit[31]}}},
                                     'blast_gelijk': disc_type,
                                     'hmm_gelijk': 'type_discrepantie'}
         print("preparing transfer to json file")
-        print(counter)
         with open("DOOM.json", "w+") as new_json:
             print("uploading the jason file... ")
             json.dump(json_file, new_json)
@@ -99,7 +118,7 @@ def empty_json():
 
 def discrepancy_plot(data_dict):
     plt.bar(range(len(data_dict)), list(data_dict.values()), align='center')
-    plt.xticks(range(len(data_dict)), list(data_dict.keys()),rotation=45)
+    plt.xticks(range(len(data_dict)), list(data_dict.keys()), rotation=45)
     plt.title("BLAST discrepancy distribution between forward and reverse reads")
     plt.ylabel("Discrepancies count")
     plt.xlabel("Discrepancy type")
@@ -107,9 +126,20 @@ def discrepancy_plot(data_dict):
     plt.show()
 
 
+def counter_for_analysis(counter):
+    total = 0
+    total_class = int(counter['No discrepancy']) + int(counter['Class']) + int(counter['forward read empty']) + int(
+        counter['reverse read empty']) + int(counter['both reads empty'])
+    total_count = list(counter.values())
+    for number in total_count:
+        total += number
+    print(f"The percentage discrepancy in class level: ", round(total_class / total * 100,2), "%")
+
+
 if __name__ == '__main__':
     # empty_json()
     ffname = "1_R1_outputfile.tsv"
     rfname = "1_R2_outputfile.tsv"
     counter = file_reader(ffname, rfname)
-    discrepancy_plot(counter)
+    # discrepancy_plot(counter)
+    counter_for_analysis(counter)

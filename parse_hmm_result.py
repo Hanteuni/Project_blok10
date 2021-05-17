@@ -31,16 +31,22 @@ def json_loader(jason_file, hmm_file):
 
 def hmm_discrepancies(result_forward_dict, result_reverse_dict):
     json_file = {}
+    counter_total = 0
+    counter_discrepancy = 0
     for info in result_reverse_dict:
         forward_names = result_forward_dict.get(info)
         reverse_names = result_reverse_dict.get(info)
         if forward_names[1] == reverse_names[1]:
+            counter_total += 1
             json_file = save_result_json(result_forward_dict, result_reverse_dict, info, result="No Discrepancy",
                                          json_file=json_file)
         else:
+            counter_total += 1
+            counter_discrepancy += 1
             json_file = save_result_json(result_forward_dict, result_reverse_dict, info, result="Discrepancy",
                                          json_file=json_file)
-    return json_file
+
+    return json_file, counter_discrepancy, counter_total
 
 
 def Chlamydiia_gives_us_problems():
@@ -460,7 +466,6 @@ def write_to_json(json_file):
         json.dump(json_file, new_json)
         print("file is done")
 
-
 if __name__ == '__main__':
     jason_file = "DOOM.json"
     hmm_file_forward = "forward_matches.csv.tblout"
@@ -469,6 +474,7 @@ if __name__ == '__main__':
     result_forward_dict = json_loader(jason_file, hmm_file=hmm_file_forward)
     print("starting reverse")
     result_reverse_dict = json_loader(jason_file, hmm_file=hmm_file_reverse)
-    json_file = hmm_discrepancies(result_forward_dict, result_reverse_dict)
-    write_to_json(json_file)
+    json_file, counter_discrepancy, counter_total = hmm_discrepancies(result_forward_dict, result_reverse_dict)
+    print(f"The percentage discrepancy in class level: ", round(counter_discrepancy / counter_total * 100,2), "%")
+    # write_to_json(json_file)
     # Chlamydiia_gives_us_problems()
