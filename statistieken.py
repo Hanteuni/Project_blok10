@@ -8,17 +8,23 @@ import pandas as pd
 
 def get_df(tax):
     """
-    Deze functie maakt van het csv wat de statistieken bevat een pandas dataframe.
-    tax: Het taxonomie niveau waarvan de statistieken worden berekend.
-         Deze parameter wordt meegegeven vanuit de "main" functie.
-    Op het moment wordt over alle niveaus geitereerd en wordt deze functie dus iteratief aangeroepen.
+    This function makes a pandas dataframe from a csv containing the amount of seqeunces per organism
+    tax: The taxonomie level of wich you want to get the data frame
+    This function is called from the main, for every taxonomy level, in an iterative way
 
-    return: een dataframe met als format 
+    return: A datafram containf two colums in the follwing format: organism, amount
     """
     return pd.read_csv(tax + "/statistieken.csv", index_col=0)
 
 
 def make_barplot_simple(df, log=False):
+    """
+    makes a simple bar plot, meaning plots the amount of sequences per organism.
+    df: The data fram of wich a bar plot is made.
+
+    The bar plots will be saved in the graph file with the name "[taxonomy level]bar.png"
+    This function is called from the main per taxonomy level in an iterative way.
+    """
     tax = df.index.name
     ax = df.plot(kind="bar", figsize=[15, 15], title=(
         "count of organisms per " + tax), logy=log)
@@ -31,16 +37,28 @@ def make_barplot_simple(df, log=False):
     plt.show()
 
 
-def make_barplot_increments(df, steps=10):
+def make_barplot_increments(df, amount_increments=10):
+    """
+    Makes a bar plot baseds on increments,
+    meaning makes [amount_increments] catogories based on the organism with the most sequences.
+    example: most sequences = 100 with amount_increments = 4 the categories will be 0~25, 25~50, 50~75, 75~100.
+    The bar displays the count of organisms which fall in these categories.
+    df: The data fram of wich a bar plot is made.
+    amount_increments: amount of increments plotted/ different catogories mande,
+    will also correspond to the amount of bars in the plot.
+
+    The bar plots will be saved in the graph file with the name "[taxonomy level]bar_increments.png"
+    This function is called from the main per taxonomy level in an iterative way.
+    """
     max = df["aantal"].max()
-    stepsize = max / steps
+    stepsize = max / amount_increments
     lowerbound = 0
     upperbound = stepsize
     results = []
     tax = df.index.name
     index_text = []
 
-    for i in range(steps-1):
+    for i in range(amount_increments - 1):
         results.append(df[(df["aantal"] >= lowerbound)
                        & (df["aantal"] <= upperbound)])
         # print(df[(df["aantal"] >= lowerbound) & (df["aantal"] <= upperbound)])
@@ -62,7 +80,7 @@ def make_barplot_increments(df, steps=10):
     plt.title(tax + "\ncount of organisms per count of fasta's used to create HMM")
     plt.ylabel("count of different organisms")
     plt.xlabel("count of fasta's used to create HMM per " + tax +
-               ",\nseperated in " + str(steps) + " different catogories per count")
+               ",\nseperated in " + str(amount_increments) + " different catogories per count")
 
     for index, value in zip(index, value):
         plt.text(index, value, str(value))
@@ -73,6 +91,13 @@ def make_barplot_increments(df, steps=10):
 
 
 def bake_a_pie(df):
+    """
+    Makes a simple pie plot, meaning it shows the amount of sequences per organism in a pie chart.
+    df: The data fram of wich a bar plot is made.
+
+    The bar plots will be saved in the graph file with the name "[taxonomy level]pie.png"
+    This function is called from the main per taxonomy level in an iterative way.
+    """
     tax = df.index.name
     df.plot(y="aantal", kind="pie", figsize=[
             10, 10], title=tax, legend=False, labels=None)
@@ -82,7 +107,15 @@ def bake_a_pie(df):
     plt.show()
 
 
-def pie_percentage(df, amount=5):
+def pie_cutoff(df, amount=5):
+    """
+    makes a pie chart with 2 pies splitting the data set in organisms with les then [amount] and higher then [amount].
+    amount: the amount of sequences on which you want to split the data set.
+    df: The data fram of wich a bar plot is made.
+
+    The bar plots will be saved in the graph file with the name "[taxonomy level]pie_cutoff.png"
+    This function is called from the main per taxonomy level in an iterative way.
+    """
     tax = df.index.name
     lesser = df[df["aantal"] <= amount].shape[0]
     higher = df[df["aantal"] > amount].shape[0]
@@ -96,4 +129,7 @@ def pie_percentage(df, amount=5):
 if __name__ == '__main__':
     for tax in ["superkingdom", "phylum", "class", "family", "genus"]:
         df = get_df(tax)
+        make_barplot_simple(df)
+        make_barplot_increments(df)
         bake_a_pie(df)
+        pie_cutoff(df)
