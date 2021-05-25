@@ -1,34 +1,35 @@
 import json
 import traceback
 
-# Import van Biopython, zoals verkregen via de requirements
+# Import van Biopython, as retrieved from the requirements.
 from Bio.Seq import Seq
 
 
 def json_to_fasta(file_json, forward):  # rename #TODO
     """
-    Deze functie laad het eerder aangemaakte JSON bestand in en maakt hier een Fasta bestand van.
-    file_json: Het JSON bestand waarvan een Fasta file wordt gemaakt
-    forward: True als de forward strand wordt gebruikt, False voor de reverse strand
-    return: een geschreven fasta bestand.
+    This function loads the JSON file that was created before and creates a fasta file.
+    file_json: The JSON file that's made into a fasta file.
+    forward: True for the forward strand, False for the reverse strand.
+    return: a fasta file that contains data from the json file.
     """
-    # Dit wordt een string die ofwel forward, of reverse is.
-    # Dit wordt later gebruikt om op te slaan in de titel en de header welke strand het is.
+    # This will be a string that either says "forward" or "reverse".
+    # The string is later used to save in the title and headers if the sequences are forward or reverse. 
     strand = ""
-    # Bestandschrijffouten worden afgevangen
+    # File writing errors are caught.
     try:
-        # Het JSON bestand wordt geopend
+        # The JSON file is opened.
         with open(file_json) as json_file:
             data = json.load(json_file)
-            # Een bestandschrijffout wordt afgevangen, voor als het schrijfbestand niet kan worden geopend.
+            # File writing errors when opening the output file are caught.
             try:
-                # forward is True of False, als het True is wordt de forward strand weggeschreven.
+                # When forward is True the forward fasta file is being written.
                 if forward:
                     strand = "forward"
-                    # forward.fasta wordt aangemaakt of geleegd. Hier worden straks de sequenties en headers naar weggeschreven.
+                    # forward.fasta is created. This will be the output file.
                     f = open(strand + ".fasta", 'w')
-                    # data is het json bestand, info is de header die als key wordt gebruikt.
+                    # data is the json file, info is the header which is used as the key in the json file.
                     for info in data:
+                        #TODO verengels maybe?
                         if str(data[info]["blast_gelijk"]):
                             print(">" + info + "|{}".format(strand) + "\n"
                                   + data[info]["forward_sequentie"]["sequentie"])
@@ -38,19 +39,19 @@ def json_to_fasta(file_json, forward):  # rename #TODO
                             print("blast is not equal to HMM, skipping")
                     f.close()
                 else:
-                    # forward is True of False, als het False is wordt de reverse strand weggeschreven.
+                    # When forward is False the reverse fasta file is being written.
                     strand="reverse"
-                    # reverse.fasta wordt aangemaakt of geleegd. Hier worden straks de sequenties en headers naar weggeschreven.
+                    # forward.fasta is created. This will be the output file
                     f=open(strand + ".fasta", 'w')
-                    # data is het json bestand, info is de header die als key wordt gebruikt.
+                    # data is the json file, info is the header which is used as the key in the json file.
                     for info in data:
                         #TODO moet hier niet ook een controle op discrepanties?
-                        # Er wordt een bestand gemaakt die er als volgt uit ziet:
+                        # A file is created, which looks like this:
                         # >header|reverse\n
-                        # sequentie
+                        # sequence
                         print(">" + info + "|{}".format(strand) + "\n"
                               + data[info]["reverse_sequentie"]["sequentie"])
-                        # Omdat de sequentie als een forward sequentie is opgeslagen moet deze reverse complementair gemaakt worden.
+                        # The sequence is forward oriented, so it needs to be reversed and made complementary.
                         sequentie=Seq(
                             data[info]["reverse_sequentie"]["sequentie"]).reverse_complement()
                         f.write(">" + info + "|{}".format(strand) + "\n"
