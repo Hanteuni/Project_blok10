@@ -30,12 +30,10 @@ def json_to_fasta(file_json, forward):  # rename #TODO
                     # data is het json bestand, info is de header die als key wordt gebruikt.
                     for info in data:
                         if str(data[info]["blast_gelijk"]):
-                            pass
-                        #TODO wat is deze
-                            # print(">" + info + "|{}".format(strand) + "\n"
-                            #       + data[info]["forward_sequentie"]["sequentie"])
-                            # f.write(">" + info + "|{}".format(strand) + "\n"
-                            #         + data[info]["forward_sequentie"]["sequentie"] + "\n")
+                            print(">" + info + "|{}".format(strand) + "\n"
+                                  + data[info]["forward_sequentie"]["sequentie"])
+                            f.write(">" + info + "|{}".format(strand) + "\n"
+                                    + data[info]["forward_sequentie"]["sequentie"] + "\n")
                         else:
                             print("blast is not equal to HMM, skipping")
                     f.close()

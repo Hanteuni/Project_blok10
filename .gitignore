@@ -9,3 +9,4 @@ janne.fasta
 data/*
 figs
 !.gitkeep
+venv
