@@ -92,6 +92,7 @@ def hmm_parser(hmm_data):
 
 
 def save_result_json(result_forward_dict, result_reverse_dict, info, result="", json_file={}):
+    print(info)
     json_file[info] = {
         "forward_sequentie": {
             "sequentie": "",
