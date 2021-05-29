@@ -1,0 +1,4 @@
+matplotlib==3.4.2
+pandas==1.2.4
+biopython==1.77
+tqdm==4.61.0

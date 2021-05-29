@@ -63,7 +63,7 @@ def file_reader(ffname, rfname, ):
                                                                                                                    41],
                                                                                                            'scoring':
                                                                                                                fsplit[
-                                                                                                                   41]}},
+                                                                                                                   41]}}},
 
                                                           'reverse_sequentie': {'sequentie': rsplit[2],
                                                                                 'taxonomie_blast':
@@ -72,7 +72,7 @@ def file_reader(ffname, rfname, ):
                                                                                               'scoring': rsplit[20]},
                                                                                      'tax2': {'annotatie': rsplit[21],
                                                                                               'e-value': rsplit[30],
-                                                                                              'scoring': rsplit[31]}},
+                                                                                              'scoring': rsplit[31]},
                                                                                 'tax3':
                                                                                     {'annotatie':
                                                                                          fsplit[
@@ -82,9 +82,9 @@ def file_reader(ffname, rfname, ):
                                                                                              41],
                                                                                      'scoring':
                                                                                          fsplit[
-                                                                                             41]}},
-                                                            'blast_gelijk': disc_type,
-                                                            'hmm_gelijk': 'type_discrepantie'}}
+                                                                                             41]}}},
+                                                          'blast_gelijk': disc_type,
+                                                          'hmm_gelijk': 'type_discrepantie'}
     print("preparing transfer to json file")
     with open("DOOM.json", "w+") as new_json:
         print("uploading the jason file... ")
