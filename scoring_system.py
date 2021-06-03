@@ -20,17 +20,16 @@ def json_splitter_i_guess(file, tool, tax_height):
     #     discrep = hoeveelheid overeenkomende organismen
     #     TODO aanpassen waar we willen opslaan hoe willen opslaan
 
-    print()
-    print(discrep)
+        print(discrep)
 
 
 def check(forward_taxonomy_levels, reverse_taxonomy_levels, tax_height):
     forward_taxonomie, reverse_taxonomie = [], []
-    # for i in range(1, 4):
-    #     forward_taxonomie.append(forward_taxonomy_levels["tax{}_{}".format(i, tax_height)]["annotatie"])
-    #     # reverse_taxonomie += reverse_taxonomy_levels["tax{}_{}".format(i,tax_height)]
-    forward_taxonomie, reverse_taxonomie = ["Clostridia", "Thermotogae", "Clostridia"], \
-                                           ["Clostridia", "Clostridia", "Thermotogae"]
+    for i in range(1, 4):
+        forward_taxonomie.append(forward_taxonomy_levels["tax{}_{}".format(i, tax_height)]["annotatie"])
+        reverse_taxonomie.append(reverse_taxonomy_levels["tax{}_{}".format(i,tax_height)]["annotatie"])
+    # forward_taxonomie, reverse_taxonomie = ["Clostridia", "Thermotogae", "Clostridia"], \
+    #                                        ["Clostridia", "Clostridia", "Thermotogae"]
     number_of_simular_taxos = set(forward_taxonomie).intersection(set(reverse_taxonomie))
     return len(number_of_simular_taxos)
 
