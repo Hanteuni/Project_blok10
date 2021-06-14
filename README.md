@@ -7,6 +7,9 @@ Om een beter idee te krijgen over de kwaliteit van BLAST annotatie is het idee o
 # Hoe run je de pipeline
 - Note: Plaats in de Data map de metagenomics dataset (zie: Metagenomics_project_HMMs.csv). 
 
+De pipeline draait via een docker file, hierom is het slechts een kwestie van Docker installeren, downloaden, en de Docker project file aanroepen middels de volgende commando's:
+docker build --tag <tag_name>
+docker run -v ${PWD}:/app <tag_name>
 
 # In welke map staat wat?
 Fun fact: we gebruiken geen mapjes ;)
