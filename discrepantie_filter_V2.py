@@ -1,27 +1,33 @@
-import json, tqdm
+import json
+import tqdm
+
 import matplotlib.pyplot as plt
-import math
 from Bio import Entrez
 
 TAXONOMY_LIST = ["p", "c", "o", "f", "g", "sp", "str"]
+COUNTER_DICT = {"no mistake": 0, "mistake": 0}
 
 
-def file_reader(ffname, rfname, ):
+def file_reader(forward_file_name, reverse_file_name, ):
+    """Reads the both files at the same time, gets the parsing results and writes away the files
+    :param forward_file_name: tsv file which contains the taxonomy of BLAST of the forward reads
+    :param reverse_file_name: tsv file which contains the taxonomy of BLAST of the reverse reads
+    :return: A written .json file named ALL_BLAST.json
+    """
     json_file = {}
-    counter = {"No discrepancy": 0, "Class": 0, "Order": 0, "Family": 0, "Genus": 0, "Species": 0,
-               "forward read empty": 0, "reverse read empty": 0, "both reads empty": 0}
-    with open(ffname, "r") as ffile, open(rfname) as rfile:
+    # dictionary for plots
+    counter_dict = {"No discrepancy": 0, "Class": 0, "Order": 0, "Family": 0, "Genus": 0, "Species": 0,
+                    "forward read empty": 0, "reverse read empty": 0, "both reads empty": 0}
+    with open(forward_file_name, "r") as ffile, open(reverse_file_name) as rfile:
         ffile.readline()
         rfile.readline()
         print("Parsing and ordering .tsv content")
-        for fline, rline in tqdm.tqdm(zip(ffile, rfile), total=150000, desc="progress"):
-            tax_dict1 = {}
-            tax_dict2 = {}
+        for fline, rline in tqdm.tqdm(zip(ffile, rfile), total=144206, desc="progress"):
+            tax_dict_forward = {}
+            tax_dict_reverse = {}
             fsplit = fline.split("\t")
-            # print(fsplit)
             rsplit = rline.split("\t")
-            # print(rsplit)
-
+            # filling up all empty reads, preventing index errors
             for i in range(42):
                 try:
                     fsplit[i]
@@ -32,11 +38,11 @@ def file_reader(ffname, rfname, ):
                 except IndexError:
                     rsplit.append("")
 
-            tax_dict1[fsplit[0]] = [fsplit[10], fsplit[21], fsplit[32]]
-            tax_dict2[rsplit[0]] = [rsplit[10], rsplit[21], rsplit[32]]
+            tax_dict_forward[fsplit[0]] = [fsplit[10], fsplit[21], fsplit[32]]
+            tax_dict_reverse[rsplit[0]] = [rsplit[10], rsplit[21], rsplit[32]]
             tax_list_forward = [fsplit[10], fsplit[21], fsplit[32]]
-            tax_list_reverse = [fsplit[10], fsplit[21], fsplit[32]]
-            # checks wether taxonomy is missing and filling them into a list
+            tax_list_reverse = [rsplit[10], rsplit[21], rsplit[32]]
+            # checks whether taxonomy is missing and filling them into a list
             full_tax_list_forward = []
             full_tax_list_reverse = []
             for tax_forward in tax_list_forward:
@@ -45,9 +51,8 @@ def file_reader(ffname, rfname, ):
             for tax_reverse in tax_list_reverse:
                 part_tax_list_reverse = fill_empty(tax_list=tax_reverse)
                 full_tax_list_reverse.append(part_tax_list_reverse)
-            disc_type = discrepantie_search(tax_dict1, tax_dict2)
-            counter[disc_type] += 1
-            # print(full_tax_list_forward)
+            disc_type = discrepantie_search(tax_dict_forward, tax_dict_reverse)
+            counter_dict[disc_type] += 1
             try:
                 json_file[fsplit[0]] = {
                     "blast_gelijk": "vul met dispecantie blast",
@@ -254,16 +259,20 @@ def file_reader(ffname, rfname, ):
                 }
             except IndexError:
                 print(full_tax_list_forward)
-
     print("preparing transfer to json file")
-    with open("DOOM.json", "w+") as new_json:
+    with open("data/ALL_BLAST.json", "w+") as new_json:
         print("uploading the jason file... ")
         json.dump(json_file, new_json)
         print("file is done")
-    return counter
+    return counter_dict
 
 
 def fill_empty(tax_list):
+    """This function fills in the gaps in the BLAST annotation with "".
+    Alternatively the annotation can be filled by the taxonomy database although this takes a very long time
+    :param tax_list: A list containing the taxonomy of the BLAST output
+    :return: A list containing the BLAST annotation where the list is 8 long.
+    """
     tax_list_split = tax_list.split("|")
     missing_ls = []
     # checks if there is a taxonomy level missing; also excludes empty annotation
@@ -282,23 +291,29 @@ def fill_empty(tax_list):
             index = TAXONOMY_LIST.index(tax)
             # looking in the NCBI taxonomy db for missing tax levels
             # WARNING; this takes a very long time (also you might get kicked out from the NCBI server)
-            # print(tax_list_split)
             # filler_organism = tax_get(search_organism, index)
             tax_list_split.insert(index, "")
+        COUNTER_DICT["mistake"] += 1
     elif len(tax_list_split) == 1:
-        tax_list_split = ["","","","","","","",""]
+        tax_list_split = ["", "", "", "", "", "", "", ""]
     return tax_list_split
 
 
 def tax_get(search_organism, index):
+    """This function searches through the taxonomy database of the NCBI online. WARNING you might get blocked from the
+    NCBI server if there are a lot of reads.
+    :param search_organism: Organism of which the accession id_ncbi will be retrieved.
+    :param index: the index which is used for the taxonomy level
+    :return: A full list of organisms retrieved from the NCBI database
+    """
     Entrez.email = "probalyjunk@outlook.com"  # Always tell NCBI who you are
-    # searcjes NCBI taxonomy db for the id of 2nd to last organism in the tax split list; this is usually species
+    # searches NCBI taxonomy db for the id_ncbi of 2nd to last organism in the tax split list; this is usually species
     id_handle = Entrez.esearch(db="Taxonomy", term=search_organism)
     id_record = Entrez.read(id_handle)
     try:
-        # getting the tax id for the efetech
-        id = id_record["IdList"][0]
-        tax_handle = Entrez.efetch(db="Taxonomy", id=id, retmode="xml")
+        # getting the tax id_ncbi for the e-fetch
+        id_ncbi = id_record["IdList"][0]
+        tax_handle = Entrez.efetch(db="Taxonomy", id=id_ncbi, retmode="xml")
         tax_records = Entrez.read(tax_handle)
         # creating a list of the full taxonomy of the creature
         tax_list = tax_records[0]["Lineage"].split(";")
@@ -310,50 +325,80 @@ def tax_get(search_organism, index):
         return ""
 
 
-def discrepantie_search(tax_dict1, tax_dict2):
+def discrepantie_search(tax_dict_forward, tax_dict_reverse):
+    """Looks at which taxonomy level the discrepancy appears. It also checks whether one or both of the reads
+    annotations is empty. This functions classifies the discrepancies into the following levels:
+    "Class", "Order", "Family", "Genus", "Species" & "No discrepancy". If no discrepancies are found the function
+    classifies it no discrepancy.
+    :param tax_dict_forward: A dictionary contaning the taxonomic information of the forward read
+    :param tax_dict_reverse:A dictionary contaning the taxonomic information of the reverse read
+    :return: A dictionary containing on which taxonomic level the BLAST differs from one another
+    """
     hdrs = ["Class", "Order", "Family", "Genus", "Species", "No discrepancy"]
     disc_type = ""
-    for key in tax_dict1:
-        if tax_dict1.get(key)[0] == "\n" and tax_dict2.get(key)[0] == "\n":
+    for key in tax_dict_forward:
+        # checks whether both reads are empty
+        if tax_dict_forward.get(key)[0] == "\n" and tax_dict_reverse.get(key)[0] == "\n":
             disc_type = "both reads empty"
-        if tax_dict1.get(key)[0] != tax_dict2.get(key)[0]:
-            if tax_dict1.get(key)[0] == "\n":
+        if tax_dict_forward.get(key)[0] != tax_dict_reverse.get(key)[0]:
+            # checks whether the forward read is empty
+            if tax_dict_forward.get(key)[0] == "\n":
                 disc_type = "forward read empty"
-            elif tax_dict2.get(key)[0] == "\n":
+            # checks whether the reverse read is empty
+            elif tax_dict_reverse.get(key)[0] == "\n":
                 disc_type = "reverse read empty"
-                # hij kijkt alleen naar de eerste hit en niet naar de 2e en 3e
-            elif tax_dict1.get(key)[0] != tax_dict2.get(key)[0]:
-                disc_type = tax_splitter(tax_dict1, tax_dict2, key, hdrs)
-        elif tax_dict1.get(key)[0] == tax_dict2.get(key)[0]:
+                # Only looks at the 1st top hit
+            elif tax_dict_forward.get(key)[0] != tax_dict_reverse.get(key)[0]:
+                disc_type = tax_difference(tax_dict_forward, tax_dict_reverse, key, hdrs)
+        elif tax_dict_forward.get(key)[0] == tax_dict_reverse.get(key)[0]:
             disc_type = "No discrepancy"
     return disc_type
 
 
-def tax_splitter(tax_dict1, tax_dict2, key, hdrs):
-    temp_l1 = tax_dict1.get(key)[0].split("|")
-    temp_l2 = tax_dict2.get(key)[0].split("|")
+def tax_difference(tax_dict_forward, tax_dict_reverse, key, hdrs):
+    """This function searches the difference in between the two dictionaries. And returns the highest taxonomic level on
+    which a discrepancy occurs.
+    :param tax_dict_forward: This dictionary contains the taxonomic information of the forward reads
+    :param tax_dict_reverse:This dictionary contains the taxonomic information of the reverse reads
+    :param key: The read header of which taxonomic information will be compared
+    :param hdrs: a list with the taxonomic levels.
+    :return: The highest taxonomic level at which the discrepancy was found.
+    """
+    temp_l1 = tax_dict_forward.get(key)[0].split("|")
+    temp_l2 = tax_dict_reverse.get(key)[0].split("|")
     tax_set1 = set(temp_l1[1:6])
     tax_set2 = set(temp_l2[1:6])
+    # checks the difference in the taxonomy
     difference = tax_set1 - tax_set2
     index = 5 - len(difference)
     return hdrs[index]
 
 
 def discrepancy_plot(data_dict):
+    """This function makes a plot that visualises the distribution between the discrepancies.
+    :param data_dict: A dictionary containing counts of the different discrepancies
+    :return: A plot visualising the difference in the discrepancies
+    """
     plt.bar(range(len(data_dict)), list(data_dict.values()), align='center')
     plt.xticks(range(len(data_dict)), list(data_dict.keys()), rotation=45)
-    plt.title("BLAST discrepancy distribution between forward and reverse reads")
-    plt.ylabel("Discrepancies count")
-    plt.xlabel("Discrepancy type")
+    plt.title("BLAST discrepanties distributie tussen forward en reverse reads")
+    plt.ylabel("Aantal discrepanties")
+    plt.xlabel("Discrepantie type")
     plt.tight_layout()
     plt.show()
 
 
-def counter_for_analysis(counter):
+def counter_for_analysis(counter_analysis):
+    """Counts the different discrepancies so they can be visualised into a plot or be printed out. This can be used to
+    show the distrubution of the discrepancies. Or count how much of the data contains a discrepancy.
+    :param counter_analysis: A counter containing the taxonomic level
+    :return: a print statement on the % in discrepancy
+    """
     total = 0
-    total_class = int(counter['No discrepancy']) + int(counter['Class']) + int(counter['forward read empty']) + int(
-        counter['reverse read empty']) + int(counter['both reads empty'])
-    total_count = list(counter.values())
+    total_class = int(counter_analysis['No discrepancy']) + int(counter_analysis['Class']) + \
+                  int(counter_analysis['forward read empty']) + int(
+        counter_analysis['reverse read empty']) + int(counter_analysis['both reads empty'])
+    total_count = list(counter_analysis.values())
     for number in total_count:
         total += number
     print(f"The percentage discrepancy in class level: ", round(total_class / total * 100, 2), "%")
@@ -363,5 +408,5 @@ if __name__ == '__main__':
     ffname = "1_R1_outputfile.tsv"
     rfname = "1_R2_outputfile.tsv"
     counter = file_reader(ffname, rfname)
-    # discrepancy_plot(counter)
-    # counter_for_analysis(counter)
+    discrepancy_plot(counter)
+    counter_for_analysis(counter)
