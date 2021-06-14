@@ -77,13 +77,13 @@ def grouped_bar_chart(hmm_list, blast_list, title):
 
     fig, ax = plt.subplots()
     rects1 = ax.bar(x_hmm - width / 2, hmm.values(), width, label='HMM', color="purple")
-    rects2 = ax.bar(x_hmm + width / 2, blast.values(), width, label='BLAST')
+    rects2 = ax.bar(x_blast + width / 2, blast.values(), width, label='BLAST')
 
     # Add some text for labels, title and custom x-axis tick labels, etc.
     ax.set_ylabel('Hoeveelheid reads per overeenkomst')
     ax.set_xlabel('Hoeveelheid overeenkomsten tussen forward en reverse read annotatie')
     ax.set_title(title)
-    ax.set_xticks(x_hmm)
+    ax.set_xticks(labels)
     ax.set_xticklabels(labels)
     ax.legend()
 
