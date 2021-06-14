@@ -10,6 +10,8 @@ All_BLAST.json
 All_HMM.json
 data/*
 figs
+__pycache__
+.idea
 !.gitkeep
 venv
 1_R1_outputfile.tsv
