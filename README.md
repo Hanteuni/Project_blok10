@@ -16,13 +16,18 @@ In het geval de voorkeur uitgaat naar een instantie van de pipeline zonder gebru
 pip install -r requirements
 ./pipeline.sh
 
-# In welke map staat wat?
-Fun fact: we gebruiken geen mapjes ;)
+# Indeling van files
+In het overzicht van de files op de github vindt men alle functies waarmee het project doorlopen wordt. De 
 Data: hier komt de output van de pipeline
-
+Overige mapjes? ~~~~~~~~~~~~~~~~
 
 
 # Workflow
-
+De flow van processen in de pipeline valt in 3 stappen uit te leggen.
+1: Input data bevattende rauwe 16S RNA data en een 16S metagenomic paired-end reads dataset zijn ontvangen.
+2: De verkregen data wordt middels data preprocessing klaar gemaakt om met elkaar vergeleken te worden. 
+  - Tijdens pre-processing wordt de gecureerde 16S data geparsed naar de HMM database en wordt deze gebruikt om HMMs te trainen en filteren. Hierna worden de HMMs weggeschreven naar een JSON file met enkel HMMs.
+  - De andere 16S metagenomic paired-end reads dataset wordt gefilterd op discrepanties, en de BLAST resultaten worden naar een JSON file geschreven. Vervolgens wordt van de gefilterde data fasta bestanden gemaakt die tevens gebruikt worden voor het maken en filteren van HMMs. Uiteindelijk wordt ook deze data naar de JSON file met enkel HMMs geschreven. 
+3: De JSON files worden uiteindelijk gebruikt om middels Python een vergelijking uit te voeren op de discrepanties, en hiervan worden de resultaten gevisualiseerd. 
 
 
