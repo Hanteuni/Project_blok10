@@ -17,12 +17,12 @@ pip install -r requirements
 ./pipeline.sh
 
 # In welke map staat wat?
-Fun fact: we gebruiken geen mapjes ;)
+In het overzicht van de files op de github vindt men alle functies waarmee het project doorlopen wordt. De 
 Data: hier komt de output van de pipeline
-
+Overige mapjes? ~~~~~~~~~~~~~~~~
 
 
 # Workflow
-
+TBD
 
 
