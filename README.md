@@ -11,6 +11,11 @@ De pipeline draait via een docker file, hierom is het slechts een kwestie van Do
 docker build --tag <tag_name>
 docker run -v ${PWD}:/app <tag_name>
 
+In het geval de voorkeur uitgaat naar een instantie van de pipeline zonder gebruik van Docker voer dan de volgende stappen uit:
+- Note: De pipeline maakt gebruik Python 3.8, en vereist dat MAFFT en HMMER geïnstalleerd zijn en draaien binnen een Ubuntu (16.04 en hoger) omgeving. 
+pip install -r requirements
+./pipeline.sh
+
 # In welke map staat wat?
 Fun fact: we gebruiken geen mapjes ;)
 Data: hier komt de output van de pipeline
