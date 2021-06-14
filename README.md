@@ -23,12 +23,16 @@ Overige mapjes? ~~~~~~~~~~~~~~~~
 # Workflow
 De flow van processen in de pipeline valt in 3 stappen uit te leggen.
 
-1: Input data bevattende rauwe 16S RNA data en een 16S metagenomic paired-end reads dataset zijn ontvangen.
+1: Input data bevattende gecureerde 16S RNA data en een 16S metagenomic paired-end reads dataset zijn ontvangen.
 
 2: De verkregen data wordt middels data preprocessing klaar gemaakt om met elkaar vergeleken te worden. 
   - Tijdens pre-processing wordt de gecureerde 16S data geparsed naar de HMM database en wordt deze gebruikt om HMMs te trainen en filteren. Hierna worden de HMMs weggeschreven naar een JSON file met enkel HMMs.
   - De andere 16S metagenomic paired-end reads dataset wordt gefilterd op discrepanties, en de BLAST resultaten worden naar een JSON file geschreven. Vervolgens wordt van de gefilterde data fasta bestanden gemaakt die tevens gebruikt worden voor het maken en filteren van HMMs. Uiteindelijk wordt ook deze data naar de JSON file met enkel HMMs geschreven. 
 
 3: De JSON files worden uiteindelijk gebruikt om middels Python een vergelijking uit te voeren op de discrepanties, en hiervan worden de resultaten gevisualiseerd. 
+
+Zie hieronder een visuele uitwerking van de pipeline:
+
+![afbeelding](https://user-images.githubusercontent.com/43109428/121917120-12f5ee00-cd35-11eb-8dbc-2cf0eecc0a00.png)
 
 
