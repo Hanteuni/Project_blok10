@@ -7,9 +7,9 @@ Om een beter idee te krijgen over de kwaliteit van BLAST annotatie is het idee o
 # Hoe run je de pipeline
 De pipeline draait via een Docker file, hierom is het slechts een kwestie van Docker installeren, downloaden, en de Docker project file aanroepen middels de volgende commando's:
 ```
-docker build --tag <tag_name>
+docker build --tag ProjectTeuntje
 
-docker run -v ${PWD}:/app <tag_name>
+docker run -v ${PWD}:/app ProjectTeuntje
 ```
 
 In het geval de voorkeur uitgaat naar een instantie van de pipeline zonder gebruik van Docker voer dan de volgende stappen uit:
