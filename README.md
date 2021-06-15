@@ -25,7 +25,7 @@ In het overzicht van de files op de github vindt men alle functies waarmee het p
 Data: De output van de pipeline wordt naar de data map geschreven.
 De Python scripts dienen ervoor om ieder onderdeel van de pipeline uit te kunnen voeren en staan ter overzicht op het grond niveau.
 
-# Te downloaden bestanden en waar deze behoren.
+# Te downloaden bestanden en waar deze behoren
 Om de pipeline te kunnen runnen is het benodigd een aantal bestanden te downloaden. Deze bestanden zijn de aangeleverde data files zoals ze te zien zijn in de onderstaande visuele uitwerking. Deze moeten geplaatst worden in de Data map.
 
 Originele namen van deze bestanden:
