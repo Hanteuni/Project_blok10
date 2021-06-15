@@ -49,3 +49,6 @@ Zie hieronder een visuele uitwerking van de pipeline:
 ![afbeelding](https://user-images.githubusercontent.com/43109428/121917120-12f5ee00-cd35-11eb-8dbc-2cf0eecc0a00.png)
 
 
+# Disclaimer
+Onze voorkeur gaat er naar uit om de pipeline te draaien in docker. Wij bieden geen garandering dat de pipeline werkt buiten docker om. 
+
