@@ -16,9 +16,8 @@ pip install -r requirements
 
 # Indeling van files
 In het overzicht van de files op de github vindt men alle functies waarmee het project doorlopen wordt. De 
-Data: hier komt de output van de pipeline
-Overige mapjes? ~~~~~~~~~~~~~~~~
-
+Data: De output van de pipeline wordt naar de data map geschreven.
+De overige files dienen ervoor om ieder onderdeel van de pipeline uit te kunnen voeren en staan ter overzicht op het grond niveau.
 
 # Workflow
 De flow van processen in de pipeline valt in 3 stappen uit te leggen.
