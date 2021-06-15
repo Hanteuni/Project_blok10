@@ -6,18 +6,22 @@ Om een beter idee te krijgen over de kwaliteit van BLAST annotatie is het idee o
 
 # Hoe run je de pipeline
 De pipeline draait via een Docker file, hierom is het slechts een kwestie van Docker installeren, downloaden, en de Docker project file aanroepen middels de volgende commando's:
-docker build --tag <tag_name>
+```docker build --tag <tag_name>
 docker run -v ${PWD}:/app <tag_name>
+```
 
 In het geval de voorkeur uitgaat naar een instantie van de pipeline zonder gebruik van Docker voer dan de volgende stappen uit:
 - Note: De pipeline maakt gebruik Python 3.8, en vereist dat MAFFT en HMMER geïnstalleerd zijn en draaien binnen een Ubuntu (16.04 en hoger) omgeving. 
+```
 pip install -r requirements
+
 ./pipeline.sh
+```
 
 # Indeling van files
 In het overzicht van de files op de github vindt men alle functies waarmee het project doorlopen wordt. De 
 Data: De output van de pipeline wordt naar de data map geschreven.
-De overige files dienen ervoor om ieder onderdeel van de pipeline uit te kunnen voeren en staan ter overzicht op het grond niveau.
+De Python scripts dienen ervoor om ieder onderdeel van de pipeline uit te kunnen voeren en staan ter overzicht op het grond niveau.
 
 # Workflow
 De flow van processen in de pipeline valt in 3 stappen uit te leggen.
